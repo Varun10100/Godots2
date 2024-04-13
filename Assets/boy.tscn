@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bj0183cldpcu8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ub5vj"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_3sm5h"]
+
+[node name="Boy" type="CharacterBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_ub5vj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.12, 0, 0, 0, 1.12, 0, 0, 0, 1.12, 0, 0, 0)
+mesh = SubResource("SphereMesh_3sm5h")
+skeleton = NodePath("../CollisionShape3D")

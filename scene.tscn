@@ -1,4 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://de23058felreq"]
+[gd_scene load_steps=7 format=3 uid="uid://de23058felreq"]
+
+[ext_resource type="PackedScene" uid="uid://bj0183cldpcu8" path="res://Assets/boy.tscn" id="1_wgi5p"]
+[ext_resource type="Script" path="res://Assets/Move_boy.gd" id="2_43mmu"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_b03hf"]
 size = Vector3(1, 1.315, 1.31)
@@ -11,29 +14,11 @@ size = Vector3(1, 1.315, 1.31)
 
 [node name="Scene" type="Node3D"]
 
-[node name="Box" type="RigidBody3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Box"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.43896, 0)
-shape = SubResource("BoxShape3D_b03hf")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Box"]
-transform = Transform3D(0.880977, -0.401484, 0.25038, 0.414693, 0.909961, 0, -0.227836, 0.103831, 0.968148, 0, 1.37093, 0)
-mesh = SubResource("BoxMesh_sn8jx")
-
-[node name="Box2" type="RigidBody3D" parent="."]
-transform = Transform3D(0.393687, -0.250806, 0.179184, 0.26865, 0.421696, 0, -0.151122, 0.0962755, 0.46679, 0, 0.932384, -1.71661)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Box2"]
-shape = SubResource("BoxShape3D_b03hf")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Box2"]
-mesh = SubResource("BoxMesh_sn8jx")
-
 [node name="Box3" type="RigidBody3D" parent="."]
-transform = Transform3D(0.380094, -0.324631, 0.143331, 0.337713, 0.395411, 0, -0.10899, 0.0930863, 0.499856, 0, 0, 1.64219)
+transform = Transform3D(0.380094, -0.324631, 0.143331, 0.337713, 0.395411, 0, -0.10899, 0.0930863, 0.499856, 0, 0, 2.61743)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Box3"]
+transform = Transform3D(1, 7.45058e-09, 0, -2.6077e-08, 1, 0, -2.98023e-08, 1.49012e-08, 1, 0, 0, 0)
 shape = SubResource("BoxShape3D_b03hf")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Box3"]
@@ -50,3 +35,10 @@ shape = SubResource("BoxShape3D_gsaaq")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
 mesh = SubResource("BoxMesh_iv53c")
+
+[node name="Boy" parent="." instance=ExtResource("1_wgi5p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.268481, -0.71004, -0.303419)
+script = ExtResource("2_43mmu")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.685883, -0.0192408, 0.727458, 0.443869, -0.803223, 0.397257, 0.576667, 0.595368, 0.559457, 0, 1.99151, -7.10541)
