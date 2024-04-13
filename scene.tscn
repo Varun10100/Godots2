@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://de23058felreq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_b03hf"]
+size = Vector3(1, 1.315, 1.31)
+
+[sub_resource type="BoxMesh" id="BoxMesh_sn8jx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gsaaq"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_iv53c"]
+
+[node name="Scene" type="Node3D"]
+
+[node name="Box" type="RigidBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Box"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.43896, 0)
+shape = SubResource("BoxShape3D_b03hf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Box"]
+transform = Transform3D(0.880977, -0.401484, 0.25038, 0.414693, 0.909961, 0, -0.227836, 0.103831, 0.968148, 0, 1.37093, 0)
+mesh = SubResource("BoxMesh_sn8jx")
+
+[node name="Box2" type="RigidBody3D" parent="."]
+transform = Transform3D(0.393687, -0.250806, 0.179184, 0.26865, 0.421696, 0, -0.151122, 0.0962755, 0.46679, 0, 0.932384, -1.71661)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Box2"]
+shape = SubResource("BoxShape3D_b03hf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Box2"]
+mesh = SubResource("BoxMesh_sn8jx")
+
+[node name="Box3" type="RigidBody3D" parent="."]
+transform = Transform3D(0.380094, -0.324631, 0.143331, 0.337713, 0.395411, 0, -0.10899, 0.0930863, 0.499856, 0, 0, 1.64219)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Box3"]
+shape = SubResource("BoxShape3D_b03hf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Box3"]
+mesh = SubResource("BoxMesh_sn8jx")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.0315246, -0.295502, 0.954822, 0.0135605, 0.955335, 0.295213, -0.999411, 0.00364136, 0.0341237, 5.54103, 0.778833, 0.288857)
+
+[node name="Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(8.85, 0, 0, 0, 0.505, 0, 0, 0, 11.35, 0, -1.96254, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("BoxShape3D_gsaaq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("BoxMesh_iv53c")
