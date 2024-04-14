@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://de23058felreq"]
+[gd_scene load_steps=9 format=3 uid="uid://de23058felreq"]
 
 [ext_resource type="PackedScene" uid="uid://bj0183cldpcu8" path="res://Assets/boy.tscn" id="1_wgi5p"]
 [ext_resource type="Script" path="res://Assets/Move_boy.gd" id="2_43mmu"]
+[ext_resource type="Environment" uid="uid://b8omy5uqr24qm" path="res://Enviroment/mood.tres" id="3_10xgo"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_b03hf"]
 size = Vector3(1, 1.315, 1.31)
@@ -10,7 +11,11 @@ size = Vector3(1, 1.315, 1.31)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gsaaq"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ymj57"]
+albedo_color = Color(1, 0.188235, 0.188235, 1)
+
 [sub_resource type="BoxMesh" id="BoxMesh_iv53c"]
+material = SubResource("StandardMaterial3D_ymj57")
 
 [node name="Scene" type="Node3D"]
 
@@ -24,9 +29,6 @@ shape = SubResource("BoxShape3D_b03hf")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Box3"]
 mesh = SubResource("BoxMesh_sn8jx")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.0315246, -0.295502, 0.954822, 0.0135605, 0.955335, 0.295213, -0.999411, 0.00364136, 0.0341237, 5.54103, 0.778833, 0.288857)
-
 [node name="Floor" type="StaticBody3D" parent="."]
 transform = Transform3D(8.85, 0, 0, 0, 0.505, 0, 0, 0, 11.35, 0, -1.96254, 0)
 
@@ -37,8 +39,22 @@ shape = SubResource("BoxShape3D_gsaaq")
 mesh = SubResource("BoxMesh_iv53c")
 
 [node name="Boy" parent="." instance=ExtResource("1_wgi5p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.268481, -0.71004, -0.303419)
+transform = Transform3D(0.605, 0, 0, 0, 0.605, 0, 0, 0, 0.605, 0.268481, -0.763489, -0.303419)
 script = ExtResource("2_43mmu")
 
+[node name="Camera3D" type="Camera3D" parent="Boy"]
+transform = Transform3D(0.0521068, -0.488433, 1.57822, 0.022414, 1.57907, 0.487956, -1.65192, 0.00601882, 0.0564028, 11.4535, 2.54929, 0.978969)
+environment = ExtResource("3_10xgo")
+
+[node name="XROrigin3D" type="XROrigin3D" parent="Boy"]
+transform = Transform3D(1.65289, 0, 0, 0, 1.65289, 0, 0, 0, 1.65289, 0, 0, 0)
+
+[node name="XRCamera3D" type="XRCamera3D" parent="Boy/XROrigin3D"]
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.685883, -0.0192408, 0.727458, 0.443869, -0.803223, 0.397257, 0.576667, 0.595368, 0.559457, 0, 1.99151, -7.10541)
+transform = Transform3D(-0.685883, -0.0192407, 0.727457, 0.443869, -0.803223, 0.397257, 0.576667, 0.595368, 0.559457, 2.06433, 0.857539, -0.694208)
+light_color = Color(0.945098, 0.811765, 0.941176, 1)
+shadow_enabled = true
+shadow_blur = 0.744
+directional_shadow_blend_splits = true
+directional_shadow_max_distance = 29.6

@@ -1,15 +1,16 @@
 [gd_scene load_steps=3 format=3 uid="uid://bj0183cldpcu8"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_ub5vj"]
+[ext_resource type="ArrayMesh" uid="uid://csmwcdyhdehyk" path="res://Assets/material_playerball.tres" id="1_i34xd"]
 
-[sub_resource type="SphereMesh" id="SphereMesh_3sm5h"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_b5vtb"]
+radius = 1.15
 
 [node name="Boy" type="CharacterBody3D"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_ub5vj")
+shape = SubResource("SphereShape3D_b5vtb")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3Ds" type="MeshInstance3D" parent="."]
 transform = Transform3D(1.12, 0, 0, 0, 1.12, 0, 0, 0, 1.12, 0, 0, 0)
-mesh = SubResource("SphereMesh_3sm5h")
+mesh = ExtResource("1_i34xd")
 skeleton = NodePath("../CollisionShape3D")

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://vbt0t88u6wpx"]
+
+[ext_resource type="ArrayMesh" uid="uid://csmwcdyhdehyk" path="res://Assets/material_playerball.tres" id="1_531xk"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_8mc0e"]
+radius = 1.0
+
+[node name="playerball" type="CharacterBody3D"]
+
+[node name="Sphere" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_531xk")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_8mc0e")
