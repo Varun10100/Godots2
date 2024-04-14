@@ -1,7 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://de23058felreq"]
+[gd_scene load_steps=11 format=3 uid="uid://de23058felreq"]
 
+[ext_resource type="Texture2D" uid="uid://df48584v1b82o" path="res://Groud_Material/TactilePaving002_2K-PNG_NormalGL.png" id="1_iykfw"]
 [ext_resource type="PackedScene" uid="uid://bj0183cldpcu8" path="res://Assets/boy.tscn" id="1_wgi5p"]
 [ext_resource type="Script" path="res://Assets/Move_boy.gd" id="2_43mmu"]
+[ext_resource type="Texture2D" uid="uid://84mux3vc6ej1" path="res://Groud_Material/TactilePaving002_2K-PNG_Roughness.png" id="2_rwq0a"]
 [ext_resource type="Environment" uid="uid://b8omy5uqr24qm" path="res://Enviroment/mood.tres" id="3_10xgo"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_b03hf"]
@@ -12,15 +14,23 @@ size = Vector3(1, 1.315, 1.31)
 [sub_resource type="BoxShape3D" id="BoxShape3D_gsaaq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ymj57"]
-albedo_color = Color(1, 0.188235, 0.188235, 1)
+albedo_color = Color(0.682353, 0.517647, 0.403922, 1)
+roughness_texture = ExtResource("2_rwq0a")
+normal_enabled = true
+normal_scale = 16.0
+normal_texture = ExtResource("1_iykfw")
+uv1_scale = Vector3(2, 2, 2)
+uv1_triplanar = true
+uv1_triplanar_sharpness = 38.0548
 
 [sub_resource type="BoxMesh" id="BoxMesh_iv53c"]
 material = SubResource("StandardMaterial3D_ymj57")
 
 [node name="Scene" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00208473, 0.0367198, -0.0366936)
 
 [node name="Box3" type="RigidBody3D" parent="."]
-transform = Transform3D(0.380094, -0.324631, 0.143331, 0.337713, 0.395411, 0, -0.10899, 0.0930863, 0.499856, 2.032, 3.36214, 1.705)
+transform = Transform3D(0.380094, -0.324631, 0.143331, 0.337713, 0.395411, 0, -0.10899, 0.0930863, 0.499856, 2.02537, 3.38029, 1.68627)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Box3"]
 transform = Transform3D(1, 3.72529e-09, 0, -2.6077e-08, 1, 2.98023e-08, 0, -1.49012e-08, 1, 0, 0, 0)
@@ -39,8 +49,15 @@ shape = SubResource("BoxShape3D_gsaaq")
 mesh = SubResource("BoxMesh_iv53c")
 
 [node name="Boy" parent="." instance=ExtResource("1_wgi5p")]
-transform = Transform3D(0.597318, -0.0961027, 0, 0.0961027, 0.597318, 0, 0, 0, 0.605, 0.268, 1.87302, -0.205)
+transform = Transform3D(0.597318, -0.0961027, 0, 0.0961027, 0.597318, 0, 0, 0, 0.605, 0.268, 0.980086, -0.205)
 script = ExtResource("2_43mmu")
+
+[node name="Node3D" type="Node3D" parent="Boy"]
+transform = Transform3D(0.999999, 2.23517e-07, 0, -2.23517e-07, 0.999999, 0, 0, 0, 1, 11.7569, 3.07701, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Boy/Node3D"]
+transform = Transform3D(0.0521068, -0.488433, 1.57822, 0.022414, 1.57907, 0.487956, -1.65192, 0.00601879, 0.0564028, 6.0101, -0.153782, 0.978969)
+environment = ExtResource("3_10xgo")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.685883, -0.0192407, 0.727457, 0.443869, -0.803223, 0.397257, 0.576667, 0.595368, 0.559457, 2.06433, 0.857539, -0.694208)
@@ -51,7 +68,3 @@ directional_shadow_blend_splits = true
 directional_shadow_max_distance = 29.6
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.0289703, -0.443502, 0.895805, 0.0183959, 0.896266, 0.443135, -0.999411, 0.00364137, 0.0341237, 6.86439, 4.49647, 0.387276)
-environment = ExtResource("3_10xgo")
