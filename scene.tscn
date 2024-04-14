@@ -30,21 +30,10 @@ material = SubResource("StandardMaterial3D_ymj57")
 [node name="Scene" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00208473, 0.0367198, -0.0366936)
 
-[node name="Box3" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.02537, 3.38029, 1.68627)
-mass = 0.01
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Box3"]
-transform = Transform3D(1, 3.72529e-09, 0, -2.6077e-08, 1, 2.98023e-08, 0, -1.49012e-08, 1, 0, 0, 0)
-shape = SubResource("BoxShape3D_b03hf")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Box3"]
-mesh = SubResource("BoxMesh_sn8jx")
-
 [node name="Box4" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.48394, 4.62604, 1.68627)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.0708, 2.33596, 0.597407)
 center_of_mass_mode = 1
-angular_velocity = Vector3(17.4533, 5.23599, 3.49066)
+inertia = Vector3(10, 0, 10)
 script = ExtResource("1_47jl8")
 
 [node name="CollisionShape3D12" type="CollisionShape3D" parent="Box4"]
@@ -54,8 +43,14 @@ shape = SubResource("BoxShape3D_b03hf")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Box4"]
 mesh = SubResource("BoxMesh_sn8jx")
 
+[node name="Area3D" type="Area3D" parent="Box4"]
+
+[node name="CollisionShape3D13" type="CollisionShape3D" parent="Box4/Area3D"]
+transform = Transform3D(1, 2.6077e-08, 3.88579e-16, -2.6077e-08, 1, 1.49012e-08, -2.64698e-23, -1.49012e-08, 1, 36.2719, 0, 0)
+shape = SubResource("BoxShape3D_b03hf")
+
 [node name="Floor" type="StaticBody3D" parent="."]
-transform = Transform3D(8.85, 0, 0, 0, 0.505, 0, 0, 0, 11.35, 0, 0, 0)
+transform = Transform3D(1000, 0, 0, 0, 0.505, 0, 0, 0, 1000, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
 shape = SubResource("BoxShape3D_gsaaq")
@@ -64,14 +59,14 @@ shape = SubResource("BoxShape3D_gsaaq")
 mesh = SubResource("BoxMesh_iv53c")
 
 [node name="Boy" parent="." instance=ExtResource("1_wgi5p")]
-transform = Transform3D(0.597318, -0.0961027, 0, 0.0961027, 0.597318, 0, 0, 0, 0.605, 0.268, 0.980086, -0.205)
+transform = Transform3D(0.597318, -0.0961027, 0, 0.0961027, 0.597318, 0, 0, 0, 0.605, 0.268, 0.980086, -2.27061)
 script = ExtResource("2_43mmu")
 
 [node name="Node3D" type="Node3D" parent="Boy"]
 transform = Transform3D(0.999999, 2.23517e-07, 0, -2.23517e-07, 0.999999, 0, 0, 0, 1, 11.7569, 3.07701, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Boy/Node3D"]
-transform = Transform3D(0.0564113, 0.00225803, 1.65193, 0.00593821, 1.65288, -0.00246212, -1.65192, 0.00601876, 0.0564027, 6.0101, -0.153782, 0.978969)
+transform = Transform3D(0.145548, 0.00225803, 1.64647, 0.00579659, 1.65288, -0.00277925, -1.64646, 0.00601879, 0.145539, 5.94804, 0.318594, 1.69007)
 environment = ExtResource("3_10xgo")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -83,3 +78,8 @@ directional_shadow_blend_splits = true
 directional_shadow_max_distance = 29.6
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.508138, 0.80662, 0.301926, 0.131637, -0.273703, 0.952763, 0.851156, 0.52388, 0.0328982, -1.35242, 11.003, -0.342936)
+
+[connection signal="body_entered" from="Box4/Area3D" to="Box4" method="_on_area_3d_body_entered"]

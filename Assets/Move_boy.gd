@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 var Velocity  = Vector3(0,0,0)
-const SPEED = 5
+const SPEED = 10
 const  RotateSpeed = 10
 
 func _ready():

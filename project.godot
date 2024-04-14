@@ -53,6 +53,7 @@ renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
 environment/defaults/default_clear_color=Color(0.301961, 0.301961, 0.301961, 1)
 anti_aliasing/quality/msaa_3d=2
+environment/defaults/default_environment="res://Enviroment/mood.tres"
 rendering_device/canvas_textures/default_texture_repeat=0
 
 [xr]
