@@ -1,0 +1,94 @@
+[gd_scene load_steps=14 format=3 uid="uid://cuvaaidttrswk"]
+
+[ext_resource type="Script" path="res://Box4.gd" id="1_47jl8"]
+[ext_resource type="Texture2D" uid="uid://df48584v1b82o" path="res://Groud_Material/TactilePaving002_2K-PNG_NormalGL.png" id="1_iykfw"]
+[ext_resource type="PackedScene" uid="uid://bj0183cldpcu8" path="res://Assets/boy.tscn" id="1_wgi5p"]
+[ext_resource type="Script" path="res://Assets/Move_boy.gd" id="2_43mmu"]
+[ext_resource type="Texture2D" uid="uid://84mux3vc6ej1" path="res://Groud_Material/TactilePaving002_2K-PNG_Roughness.png" id="2_rwq0a"]
+[ext_resource type="Environment" uid="uid://b8omy5uqr24qm" path="res://Enviroment/mood.tres" id="3_10xgo"]
+[ext_resource type="Script" path="res://ball Mech.gd" id="4_a72bg"]
+[ext_resource type="Script" path="res://CharacterBody3D.gd" id="7_dnciq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_b03hf"]
+size = Vector3(1, 1.315, 1.31)
+
+[sub_resource type="BoxMesh" id="BoxMesh_sn8jx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gsaaq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ymj57"]
+albedo_color = Color(0.682353, 0.517647, 0.403922, 1)
+roughness_texture = ExtResource("2_rwq0a")
+normal_enabled = true
+normal_scale = 16.0
+normal_texture = ExtResource("1_iykfw")
+uv1_scale = Vector3(2, 2, 2)
+uv1_triplanar = true
+uv1_triplanar_sharpness = 38.0548
+
+[sub_resource type="BoxMesh" id="BoxMesh_iv53c"]
+material = SubResource("StandardMaterial3D_ymj57")
+
+[node name="Scene" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00208473, 0.0367198, -0.0366936)
+
+[node name="Box4" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.0708, 2.33596, 0.597407)
+center_of_mass_mode = 1
+inertia = Vector3(10, 0, 10)
+script = ExtResource("1_47jl8")
+
+[node name="CollisionShape3D12" type="CollisionShape3D" parent="Box4"]
+transform = Transform3D(1, 3.72529e-09, 0, -2.6077e-08, 1, 2.98023e-08, 0, -1.49012e-08, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_b03hf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Box4"]
+mesh = SubResource("BoxMesh_sn8jx")
+
+[node name="Area3D" type="Area3D" parent="Box4"]
+
+[node name="CollisionShape3D13" type="CollisionShape3D" parent="Box4/Area3D"]
+transform = Transform3D(1, 2.6077e-08, 3.88579e-16, -2.6077e-08, 1, 1.49012e-08, -2.64698e-23, -1.49012e-08, 1, 36.2719, 0, 0)
+shape = SubResource("BoxShape3D_b03hf")
+
+[node name="Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(1000, 0, 0, 0, 0.505, 0, 0, 0, 1000, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("BoxShape3D_gsaaq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("BoxMesh_iv53c")
+
+[node name="ball Mech" type="Node3D" parent="."]
+transform = Transform3D(0.597318, -0.0961027, 0, 0.0961027, 0.597318, 0, 0, 0, 0.605, 0.268, 0.980086, -2.27061)
+script = ExtResource("4_a72bg")
+
+[node name="Boy" parent="ball Mech" instance=ExtResource("1_wgi5p")]
+transform = Transform3D(1, 1.49012e-08, 0, -1.49012e-08, 1, 0, 0, 0, 1, 0, 0, 0)
+script = ExtResource("2_43mmu")
+
+[node name="Node3D" type="Node3D" parent="ball Mech/Boy"]
+transform = Transform3D(0.999999, 2.23517e-07, 0, -2.23517e-07, 0.999999, 0, 0, 0, 1, 11.7569, 3.07701, 0)
+
+[node name="Camera3D" type="Camera3D" parent="ball Mech/Boy/Node3D"]
+transform = Transform3D(0.145548, 0.00225803, 1.64647, 0.00579659, 1.65288, -0.00277925, -1.64646, 0.00601879, 0.145539, 5.94804, 0.318594, 1.69007)
+environment = ExtResource("3_10xgo")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.685883, -0.0192407, 0.727457, 0.443869, -0.803223, 0.397257, 0.576667, 0.595368, 0.559457, 2.06433, 0.857539, -0.694208)
+light_color = Color(0.945098, 0.811765, 0.941176, 1)
+shadow_enabled = true
+shadow_blur = 0.744
+directional_shadow_blend_splits = true
+directional_shadow_max_distance = 29.6
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.508138, 0.80662, 0.301926, 0.131637, -0.273703, 0.952763, 0.851156, 0.52388, 0.0328982, -1.35242, 11.003, -0.342936)
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+script = ExtResource("7_dnciq")
+
+[connection signal="body_entered" from="Box4/Area3D" to="Box4" method="_on_area_3d_body_entered"]
